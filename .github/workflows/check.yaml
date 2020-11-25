@@ -1,0 +1,18 @@
+jobs:
+  run:
+    name: Build
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v2
+      - name: Fetch Tools
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Test
+        run: ./workflow/verify
+
+name: Action
+
+on:
+  schedule:
+    - cron: "40 */6 * * *"
